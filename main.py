@@ -14,7 +14,8 @@ gdown_url = f"https://drive.google.com/uc?id={drive_file_id}"
 # Download only if not already downloaded
 if not os.path.exists(model_path):
     print("Downloading model...")
-    gdown.download(gdown_url, model_path, quiet=False)
+    gdown.download(gdown_url, model_path, quiet=False, fuzzy=True)
+
 
 # Load model
 model = tf.keras.models.load_model(model_path)
