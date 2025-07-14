@@ -20,13 +20,7 @@ if not os.path.exists(model_path):
 model = tf.keras.models.load_model(model_path, compile=False)
 
 # Flower class labels
-class_names = ['roses', 'daisy', 'dandelion', 'sunflowers', 'tulips']
-st.markdown("""
-<p style='text-align: center; font-size: 18px; color: yellow;'>
-The model can classify the following 5 types of flowers:
-<b>Roses</b>, <b>Daisy</b>, <b>Dandelion</b>, <b>Sunflowers</b>, and <b>Tulips</b>.
-</p>
-""", unsafe_allow_html=True)
+
 
 # st.markdown("""
 # <p style='text-align: center; font-size: 18px; color: Red;'>
@@ -54,6 +48,13 @@ st.markdown("""
         ⚠️ If you encounter an error, please <u>refresh</u> the app and try again. Thank you! 🙏
     </p>
 </div>
+""", unsafe_allow_html=True)
+class_names = ['roses', 'daisy', 'dandelion', 'sunflowers', 'tulips']
+st.markdown("""
+<p style='text-align: center; font-size: 18px; color: yellow;'>
+The model can classify the following 5 types of flowers:
+<b>Roses</b>, <b>Daisy</b>, <b>Dandelion</b>, <b>Sunflowers</b>, and <b>Tulips</b>.
+</p>
 """, unsafe_allow_html=True)
 
 # Upload multiple files
