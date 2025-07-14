@@ -21,6 +21,12 @@ model = tf.keras.models.load_model(model_path, compile=False)
 
 # Flower class labels
 class_names = ['roses', 'daisy', 'dandelion', 'sunflowers', 'tulips']
+st.markdown("""
+<p style='text-align: center; font-size: 18px; color: yellow;'>
+The model can classify the following 5 types of flowers:
+<b>Roses</b>, <b>Daisy</b>, <b>Dandelion</b>, <b>Sunflowers</b>, and <b>Tulips</b>.
+</p>
+""", unsafe_allow_html=True)
 
 # Streamlit UI
 st.markdown("""
