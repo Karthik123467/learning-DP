@@ -28,6 +28,10 @@ The model can classify the following 5 types of flowers:
 </p>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<p style='text-align: center; font-size: 18px; color: Red;'>
+⚠️ If you get any error please refresh it Thank you 
+""", unsafe_allow_html=True)
 # Streamlit UI
 st.markdown("""
     <h1 style='text-align: center; color: #9c27b0;'>🌸 Flower Image Classifier</h1>
