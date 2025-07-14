@@ -28,10 +28,26 @@ The model can classify the following 5 types of flowers:
 </p>
 """, unsafe_allow_html=True)
 
+# st.markdown("""
+# <p style='text-align: center; font-size: 18px; color: Red;'>
+# ⚠️ If you get any error please refresh it.Thank you 
+# """, unsafe_allow_html=True)
+
 st.markdown("""
-<p style='text-align: center; font-size: 18px; color: Red;'>
-⚠️ If you get any error please refresh it Thank you 
+<div style="
+    background: linear-gradient(to right, #ff4e50, #f9d423);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+">
+    <p style='text-align: center; font-size: 18px; font-weight: bold; color: white; margin: 0;'>
+        ⚠️ If you encounter an error, please <u>refresh</u> the app and try again. Thank you! 🙏
+    </p>
+</div>
 """, unsafe_allow_html=True)
+
+
 # Streamlit UI
 st.markdown("""
     <h1 style='text-align: center; color: #9c27b0;'>🌸 Flower Image Classifier</h1>
