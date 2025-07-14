@@ -1,21 +1,19 @@
 import gdown
-import streamlit as st
+import os
 import tensorflow as tf
-import numpy as np
-from PIL import Image
-import matplotlib.pyplot as plt
 
-# Download model if not exists
 model_path = "flower_model.keras"
-drive_file_id = "1qJfWFr7NoDxEyPP7znGQLGl870mYTa4I"
+drive_file_id = "11G0F-5DQpCrqq16B8CN3Qm3JjCeft0Ia"
 gdown_url = f"https://drive.google.com/uc?id={drive_file_id}"
 
+# Download only if not already downloaded
 if not os.path.exists(model_path):
-    with st.spinner("Downloading model..."):
-        gdown.download(gdown_url, model_path, quiet=False)
+    print("Downloading model...")
+    gdown.download(gdown_url, model_path, quiet=False)
 
-# Load the model
+# Load model
 model = tf.keras.models.load_model(model_path)
+
 class_names = ['roses', 'daisy', 'dandelion', 'sunflowers', 'tulips']
 
 # App title and instructions
