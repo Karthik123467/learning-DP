@@ -6,76 +6,33 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import os
 
-# 🌈 Custom CSS for beautiful background and layout
-st.markdown("""
-<style>
-body {
-    background: linear-gradient(to bottom right, #ffe3e3, #e0c3fc);
-    background-attachment: fixed;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-section.main > div {
-    background-color: rgba(255, 255, 255, 0.88);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-h1, h3 {
-    font-family: 'Segoe UI Semibold', sans-serif;
-    color: #6a1b9a;
-}
-
-hr {
-    border: none;
-    height: 2px;
-    background-color: #ce93d8;
-}
-
-div.stButton > button {
-    background-color: #ab47bc;
-    color: white;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-p, small {
-    color: #444;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# 🌼 Model setup
+# Model settings
 model_path = "flower_model.keras"
 drive_file_id = "11G0F-5DQpCrqq16B8CN3Qm3JjCeft0Ia"
 gdown_url = f"https://drive.google.com/uc?id={drive_file_id}"
 
-# ⬇️ Download model if not available
+# Download model if not present
 if not os.path.exists(model_path):
     print("Downloading model...")
     gdown.download(gdown_url, model_path, quiet=False)
 
-# 🔍 Load model
+# Load model (do not compile)
 model = tf.keras.models.load_model(model_path, compile=False)
+
+# Flower class labels
 class_names = ['roses', 'daisy', 'dandelion', 'sunflowers', 'tulips']
-
-# 🧠 App Title
 st.markdown("""
-<h1 style='text-align: center;'>🌸 Flower Image Classifier</h1>
-<p style='text-align: center;'>Upload one or more flower images and let the AI guess their type!</p>
-<hr>
-""", unsafe_allow_html=True)
-
-# 💡 Model info
-st.markdown("""
-<p style='text-align: center; font-size: 18px; color: #ff9800;'>
-The model can classify the following 5 flower types:
+<p style='text-align: center; font-size: 18px; color: yellow;'>
+The model can classify the following 5 types of flowers:
 <b>Roses</b>, <b>Daisy</b>, <b>Dandelion</b>, <b>Sunflowers</b>, and <b>Tulips</b>.
 </p>
 """, unsafe_allow_html=True)
 
-# ⚠️ Refresh warning
+# st.markdown("""
+# <p style='text-align: center; font-size: 18px; color: Red;'>
+# ⚠️ If you get any error please refresh it.Thank you 
+# """, unsafe_allow_html=True)
+
 st.markdown("""
 <div style="
     background: linear-gradient(to right, #ff4e50, #f9d423);
@@ -90,25 +47,33 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 📤 Upload Images
-uploaded_files = st.file_uploader("Upload flower images", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+
+# Streamlit UI
+st.markdown("""
+    <h1 style='text-align: center; color: #9c27b0;'>🌸 Flower Image Classifier</h1>
+    <p style='text-align: center;'>Upload one or more flower images and let the AI guess their type!</p>
+    <hr style="border: 1px solid #e0e0e0;">
+""", unsafe_allow_html=True)
+
+# Upload multiple files
+uploaded_files = st.file_uploader("📤 Upload flower images", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 
 if uploaded_files:
     for uploaded_file in uploaded_files:
         image = Image.open(uploaded_file).convert("RGB")
         st.image(image, caption="🖼️ Uploaded Image", use_column_width=True)
 
-        # 🔄 Preprocess
+        # Preprocess
         img_resized = image.resize((180, 180))
         img_array = np.expand_dims(np.array(img_resized) / 255.0, axis=0)
 
-        # 🤖 Predict
+        # Predict
         prediction = model.predict(img_array)[0]
         predicted_index = np.argmax(prediction)
         predicted_class = class_names[predicted_index]
         confidence = prediction[predicted_index] * 100
 
-        # 🧾 Result
+        # Results
         st.markdown(f"""
         <div style="text-align: center; margin-top: 20px;">
             <h3>🔍 Prediction: <span style="color:#4caf50;">{predicted_class.capitalize()}</span></h3>
@@ -116,7 +81,7 @@ if uploaded_files:
         </div>
         """, unsafe_allow_html=True)
 
-        # 📊 Chart
+        # Chart
         st.subheader("📊 Prediction Confidence")
         fig, ax = plt.subplots(figsize=(7, 2))
         bars = ax.bar(class_names, prediction, color='#7e57c2')
@@ -128,7 +93,7 @@ if uploaded_files:
                         xytext=(0, 3), textcoords="offset points", ha='center', va='bottom')
         st.pyplot(fig)
 
-# 👣 Footer
+# Footer
 st.markdown("""
 <hr>
 <div style="text-align:center;">
