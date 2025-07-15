@@ -31,11 +31,11 @@ model = tf.keras.models.load_model(model_path, compile=False)
 
 
 # Streamlit UI
-st.markdown("""
-    <h1 style='text-align: center; color: #9c27b0;'>🌸 Flower Image Classifier</h1>
-    # <p style='text-align: center;'>Upload one or more flower images and let the AI guess their type!</p>
-    <hr style="border: 1px solid #e0e0e0;">
-""", unsafe_allow_html=True)
+# st.markdown("""
+#     <h1 style='text-align: center; color: #9c27b0;'>🌸 Flower Image Classifier</h1>
+#     <p style='text-align: center;'>Upload one or more flower images and let the AI guess their type!</p>
+#     <hr style="border: 1px solid #e0e0e0;">
+# """, unsafe_allow_html=True)
 st.markdown("""
 <div style="
     background: linear-gradient(to right, #ff4e50, #f9d423);
